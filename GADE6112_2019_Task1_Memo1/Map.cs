@@ -50,6 +50,7 @@ namespace Peter_Spanos_19013035_Task2
             {
                if(r.Next(0,2) == 0) //Generate Melee Unit
                 {
+                    //creates the unit's stats
                     MeleeUnit m = new MeleeUnit(r.Next(0, 10),
                                                 r.Next(0, 10),
                                                 100,
@@ -61,6 +62,7 @@ namespace Peter_Spanos_19013035_Task2
                 }
                else // Generate Ranged Unit
                 {
+                    //creates the unit's stats
                     RangedUnit ru = new RangedUnit(r.Next(0, 10),
                                                 r.Next(0, 10),
                                                 100,
@@ -77,6 +79,7 @@ namespace Peter_Spanos_19013035_Task2
             {
                 if(r.Next(0,2) == 0) //Generate Resource Building
                 {
+                    //creates the Building's stats
                     ResourceBuilding rb = new ResourceBuilding(r.Next(0, 10),
                                                                r.Next(0, 10),
                                                                150,
@@ -87,6 +90,7 @@ namespace Peter_Spanos_19013035_Task2
                 }
                 else //Generate Unit Building
                 {
+                    //creates the Building's stats
                     FactoryBuilding fb = new FactoryBuilding(r.Next(0, 10),
                                                              r.Next(0, 10),
                                                              200,
@@ -103,6 +107,7 @@ namespace Peter_Spanos_19013035_Task2
         //Displays the units onto the form
         public void Display(GroupBox groupBox)
         {
+            //Clears form to prevent multiple instances of buttons
             groupBox.Controls.Clear();
             
 
@@ -110,8 +115,10 @@ namespace Peter_Spanos_19013035_Task2
             foreach(Unit u in units)
             {
                 Button b = new Button();
+                //Determines what type of unit to create
                 if (u is MeleeUnit)
                 {
+                    //Creates the physical properties of the unit
                     MeleeUnit mu = (MeleeUnit)u;
                     b.Size = new Size(30, 30);
                     b.Location = new Point(mu.XPos * 30, mu.YPos * 30);
@@ -127,6 +134,7 @@ namespace Peter_Spanos_19013035_Task2
                 }
                 else
                 {
+                    //Creates the physical properties of the unit
                     RangedUnit ru = (RangedUnit)u;
                     b.Size = new Size(30, 30);
                     b.Location = new Point(ru.XPos * 30, ru.YPos * 30);
@@ -140,7 +148,9 @@ namespace Peter_Spanos_19013035_Task2
                         b.ForeColor = Color.Blue;
                     }
                 }
+                //adds the unit's stats to the Unit_Click method
                 b.Click += Unit_Click;
+                //Adds the units to the groupbox
                 groupBox.Controls.Add(b);
             }
 
@@ -148,9 +158,10 @@ namespace Peter_Spanos_19013035_Task2
             foreach (Building bud in buildings)
             {
                 Button b = new Button();
-
+                //Determines what type of building to create
                 if (bud is ResourceBuilding)
                 {
+                    //Creates its physical properties
                     ResourceBuilding rb = (ResourceBuilding)bud;
 
                     b.Size = new Size(30, 30);
@@ -182,8 +193,9 @@ namespace Peter_Spanos_19013035_Task2
                     }
 
                 }
-
+                //Adds the stats to the Building_Click method
                 b.Click += Building_Click;
+                //Adds the buildings to the groupbox
                 groupBox.Controls.Add(b);
             }
         }
@@ -191,15 +203,19 @@ namespace Peter_Spanos_19013035_Task2
         //Adds a unit's info to the ToString
         public void Unit_Click(object sender, EventArgs e)
         {
+            //Determines the button's position
             int x, y;
             Button b = (Button)sender;
             x = b.Location.X / 30;
             y = b.Location.Y / 30;
 
+            //Does this for every unit on the map
             foreach(Unit u in units)
             {
+                //Determines type of unit
                 if (u is RangedUnit)
                 {
+                    //Calls the ToString method to display the stats
                     RangedUnit ru = (RangedUnit)u;
                     if (ru.XPos == x && ru.YPos == y)
                     {
@@ -209,6 +225,7 @@ namespace Peter_Spanos_19013035_Task2
                 }
                 else if (u is MeleeUnit)
                 {
+                    //Calls the ToString method to display the stats
                     MeleeUnit mu = (MeleeUnit)u;
                     if (mu.XPos == x && mu.YPos == y)
                     {
@@ -225,14 +242,17 @@ namespace Peter_Spanos_19013035_Task2
             int x, y;
 
             Button b = (Button)sender;
-
+            //Determines the button's position
             x = b.Location.X / 30;
             y = b.Location.Y / 30;
 
+            //Does this for every building on the map
             foreach (Building bud in buildings)
             {
+                //Determines type of building
                 if (bud is ResourceBuilding)
                 {
+                    //Calls the ToString method to display the stats
                     ResourceBuilding rb = (ResourceBuilding)bud;
                     if (rb.XPos == x && rb.YPos == y)
                     {
@@ -242,6 +262,7 @@ namespace Peter_Spanos_19013035_Task2
                 }
                 else if (bud is FactoryBuilding)
                 {
+                    //Calls the ToString method to display the stats
                     FactoryBuilding fb = (FactoryBuilding)bud;
                     if (fb.XPos == x && fb.YPos == y)
                     {
