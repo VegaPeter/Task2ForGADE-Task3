@@ -24,11 +24,14 @@ namespace Peter_Spanos_19013035_Task2
         //Constructor
         public GameEngine(int numUnits, TextBox txtInfoUnits, GroupBox gMap, int noBuilds)
         {
+            //Catchs and constructs map class
             grpMap = gMap;
             map = new Map(numUnits, txtInfoUnits, noBuilds);
+            //Calls methods from the map class
             map.Generate();
             map.Display(grpMap);
 
+            //Sets the round timer
             round = 1; 
         }
 
@@ -46,7 +49,7 @@ namespace Peter_Spanos_19013035_Task2
                     }
                     else
                     {
-                        (Unit closest, int distanceTo) = mu.Closest(map.Units);
+                        (Unit closest, int distanceTo) = mu.Closest(map.Units); //determines a closest unit
 
                         //Check In Range
                         if (distanceTo <= mu.AttackRange)
@@ -76,7 +79,7 @@ namespace Peter_Spanos_19013035_Task2
                                     mu.Move(1);
                                 }
                             }
-                            else if (closest is RangedUnit)
+                            else if (closest is RangedUnit) //if ranged then attack from range
                             {
                                 RangedUnit closestRu = (RangedUnit)closest;
                                 if (mu.XPos > closestRu.XPos) //North
@@ -103,7 +106,7 @@ namespace Peter_Spanos_19013035_Task2
                 else if (map.Units[i] is RangedUnit)
                 {
                     RangedUnit ru = (RangedUnit)map.Units[i];
-                   if (ru.Health <= ru.MaxHealth * 0.25) 
+                   if (ru.Health <= ru.MaxHealth * 0.25) //Run away
                     {
                         ru.Move(r.Next(0, 4));
                     }
@@ -165,8 +168,8 @@ namespace Peter_Spanos_19013035_Task2
 
                 }
             }
-            map.Display(grpMap);
-            round++;
+            map.Display(grpMap);//Display update
+            round++;//Update round
         }
 
         //Determines the distance between two units
@@ -198,7 +201,7 @@ namespace Peter_Spanos_19013035_Task2
                 RangedUnit end = (RangedUnit)b;
                 distance = Math.Abs(start.XPos - end.XPos) + Math.Abs(start.YPos - end.YPos);
             }
-            return distance;
+            return distance; 
         }
 
     }
