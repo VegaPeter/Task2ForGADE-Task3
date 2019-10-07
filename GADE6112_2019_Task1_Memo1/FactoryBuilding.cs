@@ -73,10 +73,13 @@ namespace Peter_Spanos_19013035_Task2
         //Method for the buildings to generate units 
         public Unit BuildUnit(int factions)
         {
+            //Determines Faction Type
             if(faction == 1)
             {
+                //Determines what type of unit to generate
                 if(unitType == "Melee")
                 {
+                    //Creates the unit's 
                     MeleeUnit m = new MeleeUnit(xPos,
                                                 yPos--,
                                                 100,
@@ -84,8 +87,10 @@ namespace Peter_Spanos_19013035_Task2
                                                 20,
                                                 1,
                                                 "M/");
+                    //Returns unit
                     return m;
                 }
+                //Does the same as abow except for ranged units
                 else if(unitType == "Ranged")
                 {
                     RangedUnit ru = new RangedUnit(xPos,
@@ -99,6 +104,7 @@ namespace Peter_Spanos_19013035_Task2
                     return ru;
                 }
             }
+            //Does the same as above except for the other team
             else if (faction == 0)
             {
                 if (unitType == "Melee")
@@ -125,16 +131,8 @@ namespace Peter_Spanos_19013035_Task2
                     return ru;
                 }
             }
-
-            RangedUnit rb = new RangedUnit(xPos,
-                                                yPos--,
-                                                100,
-                                                1,
-                                                20,
-                                                5,
-                                                0,
-                                                "R}");
-            return rb;
+            //Return default
+            return null;
         }
 
         //Method to destroy buildings
